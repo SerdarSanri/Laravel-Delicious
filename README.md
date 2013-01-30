@@ -37,6 +37,15 @@ In application/routes.php you can add a simple route to read and dump your delic
      */
      $delicious = Delicious\Delicious::init('bdrelling');
 
+###tags($tags)
+	/**
+     * sets the tags to return (tags separated by +)
+     * 
+     * @param string tags
+     * @return object
+     */
+     $delicious = Delicious\Delicious::init('bdrelling')->take(10)->tags('development+api')->get();
+
 ###take($count)
 	/**
      * set the count of results to take (1-100, default 15)
@@ -53,6 +62,13 @@ In application/routes.php you can add a simple route to read and dump your delic
      * @return object
      */
      $delicious = Delicious\Delicious::init('bdrelling')->take(30)->sort()->get();
+
+###reset()
+	/**
+     * resets all variables
+     * 
+     */
+     $delicious->reset();
 
 ###get()
 	/**

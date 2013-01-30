@@ -16,7 +16,8 @@ namespace Delicious;
 class Delicious {
 	
     public $username;
-    protected $sort = false;
+    protected $sort = NULL;
+    protected $tags = NULL;
     protected $take = NULL;
 
     function __construct($username)
@@ -36,13 +37,26 @@ class Delicious {
     }
 
     /**
-     * sets sort to true
+     * turns on the alphanumeric sort
      * 
      * @return object
      */
     public function sort()
     {
         $this->sort = true;
+        
+        return $this;
+    }
+
+    /**
+     * sets the tags to return
+     * 
+     * @param string tags
+     * @return object
+     */
+    public function tags($tags)
+    {
+        $this->tags = $tags;
         
         return $this;
     }
@@ -60,6 +74,17 @@ class Delicious {
         
         return $this;
     }
+    
+    /**
+     * resets all variables
+     * 
+     */
+    function reset()
+    {
+        $this->sort = NULL;
+        $this->tags = NULL;
+        $this->take = NULL;
+    }
 	
     /**
      * get the bookmarks
@@ -69,6 +94,10 @@ class Delicious {
     function get()
     {
     	  $url = 'https://api.del.icio.us/v2/json/'.$this->username;
+    	  
+    	  if(isset($this->tags)) {
+    	      $url .= '/'.$this->tags;
+    	  }
     	  
     	  if(isset($this->take)) {
     	      $url .= '?count='.$this->take;
