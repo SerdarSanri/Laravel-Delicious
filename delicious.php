@@ -14,8 +14,9 @@
 namespace Delicious;
 
 class Delicious {
-  
+	
     public $username;
+    protected $sort = false;
     protected $take = NULL;
 
     function __construct($username)
@@ -32,6 +33,18 @@ class Delicious {
     public static function init($username)
     {
         return new static($username);
+    }
+
+    /**
+     * sets sort to true
+     * 
+     * @return object
+     */
+    public function sort()
+    {
+        $this->sort = true;
+        
+        return $this;
     }
 
     /**
@@ -62,6 +75,10 @@ class Delicious {
     	  }
 
         $result = $this->_get_data($url);
+        
+        if (isset($this->sort)) {
+            $result = $this->_sort_data($result);
+        }
 
 	      return $result;
     }
@@ -83,6 +100,27 @@ class Delicious {
             $result = curl_exec($c);
         }
         return json_decode($result);
+    }
+    
+    /**
+     * sorts data retrieved from the API by name
+     * 
+     * @param string param
+     * @return array bookmarks
+     */
+    protected function _sort_data($bookmarks)
+    {
+        usort($bookmarks, function ($a, $b) {
+    
+          $s = strcasecmp($a->d, $b->d);
+        
+          if ($s == 0) { return 0; }
+          if ($s > 0) { return 1; }
+          if ($s < 0) { return -1; }
+        
+        });
+        
+        return $bookmarks;
     }
 
 }
