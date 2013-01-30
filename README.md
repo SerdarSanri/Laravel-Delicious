@@ -6,7 +6,7 @@ This bundle will allow you to retrieve links from a Delicious account using the 
 ##Setup
 Install the bundle  
 
-  $ php artisan bundle:install delicious
+	$ php artisan bundle:install delicious
 
 Include it in application/bundles.php  
 
@@ -35,7 +35,7 @@ In application/routes.php you can add a simple route to read and dump your delic
      * @param string username
      * @return object
      */
-     $tumblr = Delicious\Delicious::init('bdrelling');
+     $delicious = Delicious\Delicious::init('bdrelling');
 
 ###take($count)
 	/**
@@ -44,7 +44,7 @@ In application/routes.php you can add a simple route to read and dump your delic
      * @param integer count
      * @return object
      */
-     $tumblr = Delicious\Delicious::init('bdrelling')->take(10)->get();
+     $delicious = Delicious\Delicious::init('bdrelling')->take(10)->get();
 
 ###get()
 	/**
@@ -52,7 +52,7 @@ In application/routes.php you can add a simple route to read and dump your delic
      * 
      * @return array bookmarks
      */
-     $tumblr = Delicious\Delicious::init('bdrelling')->get();
+     $delicious = Delicious\Delicious::init('bdrelling')->get();
 
 
 Bundle created by [Brian Drelling](http://briandrelling.com).
