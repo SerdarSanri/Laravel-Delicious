@@ -46,6 +46,14 @@ In application/routes.php you can add a simple route to read and dump your delic
      */
      $delicious = Delicious\Delicious::init('bdrelling')->take(10)->get();
 
+###sort()
+	/**
+     * sorts the array of bookmarks alphabetically by name
+     * 
+     * @return object
+     */
+     $delicious = Delicious\Delicious::init('bdrelling')->take(30)->sort()->get();
+
 ###get()
 	/**
      * get the bookmarks
