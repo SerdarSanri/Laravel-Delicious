@@ -14,7 +14,7 @@ Include it in application/bundles.php
 
 
 ##Example Usage
-In application/routes.php you can add a simple route to read and dump your delicious bookmarks at /bookmarks
+In application/routes.php you can add a simple route to read and dump your delicious bookmarks at /delicious
 
 	Route::get('delicious', function()
 	{
